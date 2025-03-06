@@ -179,8 +179,12 @@ public class Robot extends TimedRobot {
     // Configuring the camera options for better performance and less lag
     camera.setFPS(15);
     camera.setBrightness(50);
-    camera.setResolution(640, 48);
+    camera.setResolution(640, 480);
     DriverStation.reportWarning("The camera has successfully been configured!", true);
+
+    // Setting the 0 yaw of the robot
+    zeroYaw()
+    
 
     // Initialize the gyroscope
     try {
