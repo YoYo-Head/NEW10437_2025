@@ -9,7 +9,7 @@ import edu.wpi.first.util.sendable.SendableRegistry;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.DriverStation;
+//import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -180,14 +180,15 @@ public class Robot extends TimedRobot {
     camera.setFPS(15);
     camera.setBrightness(50);
     camera.setResolution(640, 48);
-    DriverStation.reportWarning("The camera has successfully been configured!", true);
+    //DriverStation.reportWarning("The camera has successfully been configured!", false);
 
     // Initialize the gyroscope
     try {
       ahrs = new AHRS(NavXComType.kMXP_SPI);
-      DriverStation.reportWarning("Gyro initialized successfully!", false);
+      //DriverStation.reportWarning("Gyro initialized successfully!", false);
   } catch (RuntimeException ex) {
-      DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
+      //DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), false);
+     
       ahrs = null; 
   }
 }
@@ -195,7 +196,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     autoTimer.reset();
     autoTimer.start();
-    DriverStation.reportWarning("The autoTimer has started!", true);
+    //DriverStation.reportWarning("The autoTimer has started!", false);
 
   }
  
@@ -213,19 +214,19 @@ public class Robot extends TimedRobot {
 
     if (!yawInLimit && autoTimer.get() <= time)   {
       drive.arcadeDrive(speed, correction);
-      DriverStation.reportWarning("The turn is being corrected automatically!", null);
+      //DriverStation.reportWarning("The turn is being corrected automatically!", false);
     
     } else if (yawInLimit && autoTimer.get() <= time) {
       drive.arcadeDrive(speed, 0);
 
     } else {
       drive.arcadeDrive(0, 0);
-      DriverStation.reportError("The autonomous code has completed successfully!", null);
+      //DriverStation.reportError("The autonomous code has completed successfully!", false);
 
     }
 
   } 
-  
+   
   @Override
   public void teleopPeriodic() {
     // Actually running the 'drive' control system    
