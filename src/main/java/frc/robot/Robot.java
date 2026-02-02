@@ -230,9 +230,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // Actually running the 'drive' control system    
-    double speedDivisor = 1;
-    double turnDivisor = 0.75; 
-    drive.arcadeDrive(controller.getLeftY() * speedDivisor, controller.getRightX() * turnDivisor);
+    double speed = controller.getLeftY() * 1;
+    double turn = controller. getRightX() * 0.75;
+    
+    drive.arcadeDrive(speed, turn);
    
     /*  Running the Climber system
     if (controller.getAButton() == true) {
